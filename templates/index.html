@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portofolio Ray</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <script>
+    // Script untuk switch halaman
+    function showSection(idToShow) {
+      document.querySelectorAll('.section').forEach(section => {
+        section.style.display = 'none';
+      });
+      document.getElementById(idToShow).style.display = 'block';
+    }
+    window.onload = () => {
+      showSection('about'); // awalnya tampil halaman about
+    }
+  </script>
+</head>
+<body>
+
+  <!-- HALAMAN ABOUT -->
+  <section id="about" class="section">
+    <h1 class="fadein">Halo, gue Ray 🧠</h1>
+    <div class="animasi fadein">
+    <img src="/static/images/8284c33847b3346d81938b8744934579.jpg" alt="8284c33847b3346d81938b8744934579.jpg" class="anime-img" />
+      <p>
+        Aku Ray, asik banget ngobrol dan bantu kamu download video dari TikTok, Spotify, Instagram, dan YouTube.
+        <br/>
+        Yuk klik tombol next buat mulai!
+      </p>
+    </div>
+    <button class="btn-primary" onclick="showSection('download')">Next &rarr;</button>
+    <div class="wa-contact">
+      <a href="https://wa.me/6283890074416" target="_blank">Chat di WhatsApp</a>
+    </div>
+  </section>
+
+  <!-- HALAMAN DOWNLOAD -->
+  <section id="download" class="section" style="display:none;">
+    <h2>Download Media</h2>
+
+<!-- FORM QR CODE -->
+  <h3>Generate QR Code</h3>
+  <form action="/generate_qr" method="POST">
+    <input type="text" name="qrdata" placeholder="Masukkan teks / link QR" required>
+    <button type="submit">Buat QR</button>
+  </form>
+
+    <div class="form-group">
+      <h3>Download Video TikTok</h3>
+      <form action="/tiktok" method="POST">
+        <input type="text" name="url" placeholder="Masukkan URL TikTok" required />
+        <button type="submit">Download</button>
+      </form>
+    </div>
+
+    <div class="form-group">
+      <h3>Download Lagu Spotify</h3>
+      <form action="/spotify" method="POST">
+        <input type="text" name="url" placeholder="Masukkan URL Spotify" required />
+        <button type="submit">Download</button>
+      </form>
+    </div>
+
+    <div class="form-group">
+      <h3>Download Video Instagram</h3>
+      <form action="/instagram" method="POST">
+        <input type="text" name="iglink" placeholder="Masukkan URL Instagram" required />
+        <button type="submit">Download</button>
+      </form>
+    </div>
+
+    <div class="form-group">
+      <h3>Download YouTube</h3>
+      <form action="/youtube" method="POST">
+        <input type="text" name="ytlink" placeholder="Masukkan URL YouTube" required />
+        <button type="submit">Download</button>
+      </form>
+    </div>
+
+    <button class="btn-primary" onclick="showSection('about')">&larr; Back</button>
+    <div class="wa-contact">
+      <a href="https://wa.me/6283890074416" target="_blank">Chat di WhatsApp</a>
+    </div>
+  </section>
+
+</body>
+</html>
